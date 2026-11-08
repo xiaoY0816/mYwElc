@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>PROJECT_LIBITINA [CLASSIFIED]</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #e0e0e0;
+            font-family: "Courier New", monospace;
+            padding: 50px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        h1 { color: #8a0303; font-size: 24px; border-bottom: 1px dashed #8a0303; padding-bottom: 10px; }
+        .redacted { background-color: #e0e0e0; color: #e0e0e0; cursor: pointer; }
+        .redacted:hover { background-color: transparent; color: #e0e0e0; } /* 鼠标滑过显示被涂抹的字 */
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+        .hidden-link { color: #050505; text-decoration: none; } /* 伪装成背景色的隐藏链接 */
+    </style>
+</head>
+<body>
+    <h1>MONTHLY EXAMINATION REPORT</h1>
+    <p>Date: 2004/01/05</p>
+    <p>Subject: xxxxxx, Libitina</p>
+    <p>Status: <span class="redacted">████████████</span></p>
+    
+    <br>
+    <p>> TEST RESULTS:</p>
+    <p>Physical Control Test: FAILED (32)</p>
+    <p>Emotional Control Test: FAILED (22)</p>
+    <p>Third Eye Activation Test: PASSED (100)</p>
+    <p>Third Eye Suppression Test: <span style="color:red">FAILED (08)</span></p>
+    
+    <br>
+    <p>> ADDENDUM:</p>
+    <p>All previous subject notes have been erased permanently.</p>
+    <p>Introducing bias during testing will be punished by <span class="redacted">death</span>.</p>
+
+    <br><br>
+    <!-- 只有右键查看源代码才能看到的注释：你以为这就结束了？ -->
+    <p>Awaiting next instruction <span class="blink">_</span></p>
+    
+    <!-- 一个隐藏的入口，只有把鼠标放到屏幕右下角的黑色区域才能点进去 -->
+    <a href="/classified_hidden.html" class="hidden-link" style="position:fixed; bottom:10px; right:10px;">></a>
+</body>
+</html>
