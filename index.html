@@ -1,144 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>SYSTEM_ACCESS</title>
-    <style>
-        /* 引入自定义字体 */
-        @font-face {
-            font-family: 'MyHorrorFont';
-            src: url('font.ttf') format('truetype'); 
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            background-color: #050505; /* 纯黑背景 */
-            color: #00ff00; /* 终端绿字 */
-            font-family: 'MyHorrorFont', 'Courier New', monospace;
-            height: 100vh;
-            overflow: hidden;
-            font-size: 20px;
-            cursor: default;
-        }
-
-        /* 终端容器 */
-        #terminal {
-            padding: 50px;
-            line-height: 2;
-        }
-
-        /* 输入框样式，伪装成终端光标 */
-        input {
-            background: transparent;
-            border: none;
-            outline: none;
-            color: #00ff00;
-            font-family: inherit;
-            font-size: inherit;
-            caret-color: #00ff00;
-            width: 250px;
-        }
-
-        /* 报错提示，默认隐藏 */
-        #error-msg {
-            display: none;
-            color: #ff0000; /* 红色报错 */
-            margin-top: 10px;
-            text-shadow: 1px 1px 2px rgba(255,0,0,0.5);
-        }
-
-        /* 密码行默认隐藏 */
-        #password-line {
-            display: none;
-        }
-
-        /* 最终的黑屏容器 */
-        #black-screen {
-            display: none;
-            height: 100vh;
-            width: 100vw;
-            background-color: #000;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>&#83;&#89;&#83;&#84;&#69;&#77;&#95;&#65;&#67;&#67;&#69;&#83;&#83;</title>
+<style>@font-face{font-family:'MyHorrorFont';src:url('font.ttf') format('truetype')}body,html{margin:0;padding:0;background-color:#050505;color:#0f0;font-family:'MyHorrorFont','Courier New',monospace;height:100vh;overflow:hidden;font-size:20px;cursor:default}#_0x9c41{padding:50px;line-height:2}input{background:transparent;border:0;outline:0;color:#0f0;font-family:inherit;font-size:inherit;caret-color:#0f0;width:250px}#_0x1e63{display:none;color:red;margin-top:10px;text-shadow:1px 1px 2px rgba(255,0,0,.5)}#_0x6a18{display:none}#_0x5d27{display:none;height:100vh;width:100vw;background-color:#000}#_0x2d7e{display:block}</style>
 </head>
 <body>
-
-    <!-- 终端界面 -->
-    <div id="terminal">
-        <div id="username-line">
-            <span>USER > </span>
-            <input type="text" id="username" autocomplete="off" autofocus spellcheck="false">
-        </div>
-        
-        <div id="password-line">
-            <span>PASS > </span>
-            <input type="password" id="password" autocomplete="off" spellcheck="false">
-        </div>
-
-        <div id="error-msg"></div>
-    </div>
-
-    <!-- 最终黑屏界面 -->
-    <div id="black-screen"></div>
-
-    <!-- 你的慢扫描音频 -->
-    <audio id="sstv-audio" src="4109.mp3" preload="auto"></audio>
-
-    <script>
-        const userLine = document.getElementById('username-line');
-        const passLine = document.getElementById('password-line');
-        const userInput = document.getElementById('username');
-        const passInput = document.getElementById('password');
-        const errorMsg = document.getElementById('error-msg');
-        const terminal = document.getElementById('terminal');
-        const blackScreen = document.getElementById('black-screen');
-        const audio = document.getElementById('sstv-audio');
-
-        // 正确的账号密码
-        const CORRECT_USER = "mYwElc";
-        const CORRECT_PASS = "LlsErl1017";
-
-        // 监听用户名回车
-        userInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const val = userInput.value;
-                if (val === CORRECT_USER) {
-                    // 验证成功，进入密码阶段
-                    errorMsg.style.display = 'none';
-                    userLine.style.display = 'none';
-                    passLine.style.display = 'block';
-                    passInput.focus();
-                } else {
-                    // 验证失败
-                    errorMsg.textContent = "INVALID USERNAME. ACCESS DENIED.";
-                    errorMsg.style.display = 'block';
-                    userInput.value = ''; // 清空输入框
-                }
-            }
-        });
-
-        // 监听密码回车
-        passInput.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const val = passInput.value;
-                if (val === CORRECT_PASS) {
-                    // 密码正确，进入黑屏阶段
-                    terminal.style.display = 'none';
-                    blackScreen.style.display = 'block';
-                    
-                    // 延迟 3 秒后播放音频（制造压抑的等待感）
-                    setTimeout(function() {
-                        audio.play().catch(e => console.log("播放被拦截", e));
-                    }, 3000); 
-                } else {
-                    // 密码错误
-                    errorMsg.textContent = "INVALID PASSWORD. ACCESS DENIED.";
-                    errorMsg.style.display = 'block';
-                    passInput.value = '';
-                }
-            }
-        });
-    </script>
+<div id="_0x9c41">
+<div id="_0x2d7e"><span>&#85;&#83;&#69;&#82;&#32;&#62;&#32;</span><input type="text" id="_0x4f32" autocomplete="off" autofocus spellcheck="false"></div>
+<div id="_0x6a18"><span>&#80;&#65;&#83;&#83;&#32;&#62;&#32;</span><input type="password" id="_0x7b95" autocomplete="off" spellcheck="false"></div>
+<div id="_0x1e63"></div>
+</div>
+<div id="_0x5d27"></div>
+<audio id="_0x8a4b" src="4109.mp3" preload="auto"></audio>
+<!-- CmpHKE1A8h1btGpht2ksdJboJNhU0Tjh3soFQ7Qrdsbajn9y -->
+<script>(function(_0x3e,_0x7a,_0x1c){var _0x5d6e=0,_0x2b41=0;while(_0x5d6e<_0x3e.length){_0x2b41=(_0x2b41<<5)-_0x2b41+_0x3e.charCodeAt(_0x5d6e++);}if(_0x2b41===-0x1fff||_0x7a>0x7f){return;}var _0x6a=['YXJnZXRbVkFdPSIiO319KTt9KSgpOw==','O30sMzAwMCk7fWVsc2V7RU1bVFhdPU1QO0VNW1NUXVtEUF09Qkw7di50','ZW91dChmdW5jdGlvbigpe0FVW1BMXSgpW0NUXShmdW5jdGlvbigpe30p','eD09PUNQKXtUTVtTVF1bRFBdPU5PO0JTW1NUXVtEUF09Qkw7c2V0VGlt','di5rZXkhPT1FTil7cmV0dXJuO312YXIgeD12LnRhcmdldFtWQV07aWYo','fX0pO1BJLmFkZEV2ZW50TGlzdGVuZXIoS0QsZnVuY3Rpb24odil7aWYo','ZXtFTVtUWF09TVU7RU1bU1RdW0RQXT1CTDt2LnRhcmdldFtWQV09IiI7','O1VMW1NUXVtEUF09Tk87UE5bU1RdW0RQXT1CTDtQSVtGT10oKTt9ZWxz','YXIgeD12LnRhcmdldFtWQV07aWYoeD09PUNVKXtFTVtTVF1bRFBdPU5P','ZXIoS0QsZnVuY3Rpb24odil7aWYodi5rZXkhPT1FTil7cmV0dXJuO312','MHhkZWFkLmxlbmd0aF09US5sZW5ndGg7fVVJLmFkZEV2ZW50TGlzdGVu','MDYsMCw4LDY5XSkpO3ZhciBfMHhkZWFkPVswLDEsMl07XzB4ZGVhZFtf','KC0weDE4KTtpZihRWzBdPT09MHgwMDAwKXtjb25zb2xlLmxvZyhEKFsx','dmFyIFE9WzB4MmEsMHgxMSwweDdmXSxXPVFbMV1eUVsyXTtRWzBdPVcr','KSxQST1FKDMpLEVNPUUoNCksVE09RSg1KSxCUz1FKDYpLEFVPUUoNyk7','dFtHXShEKElEW25dKSk7fXZhciBVTD1FKDApLFBOPUUoMSksVUk9RSgy','MjcsNDgsNjcsODBdXTtmdW5jdGlvbiBFKG4pe3JldHVybiBkb2N1bWVu','MjYsNTAsNjcsM10sWzUsNzIsNjUsMjIsNTMsNjksNV0sWzUsNzIsNjUs','MjAsNTEsNzgsN10sWzUsNzIsNjUsMTgsNTIsNjUsMV0sWzUsNzIsNjUs','MSw0OCw3MCwxMF0sWzUsNzIsNjUsMjMsNTUsNjgsMF0sWzUsNzIsNjUs','LDE1XSksSUQ9W1s1LDcyLDY1LDE3LDUzLDY0LDg3XSxbNSw3Miw2NSwy','MCw5NiwxOCw1MCw5NywxMTQsMTIyLDYwLDEyNCwxMDksMjQsNTAsMTE4','LDExOCwxLDEwLDU3LDEwNiwxMTIsNiw1Niw5NiwxMDEsMTE2LDg4LDEy','MDksMjQsNTAsMTE4LDE1XSksTVA9RChbMTksNTQsMTExLDk4LDI5LDYy','MDAsMTE2LDg4LDEyMCw5NiwxOCw1MCw5NywxMTQsMTIyLDYwLDEyNCwx','MSw5OCwyOSw2MiwxMTgsMSwxNSw0MywxMjQsMTEzLDMxLDU0LDEyNywx','LDc0LDEwMiwzNSwyNywzLDE3LDEwNyw3OV0pLE1VPUQoWzE5LDU0LDEx','N10pLENVPUQoWzU1LDMzLDc4LDEwMiw2MSwyMF0pLENQPUQoWzIyLDIw','XSksUEw9RChbNDIsMjAsODgsOTBdKSxDVD1EKFs1NywyNSw3Nyw2NCw1','NDksMjksNjQsNzEsNjIsMCw5Ml0pLEVOPUQoWzMxLDIyLDc3LDcwLDM1','NSw2MywyMiw3N10pLEZPPUQoWzYwLDIzLDkwLDg2LDM0XSksS0Q9RChb','MjUsODUsODYsNTJdKSxUWD1EKFs0NiwyOSw2NSw4NywxOCwyNCw5Miw4','Myw4Nyw3MF0pLEJMPUQoWzU2LDIwLDg2LDY0LDU4XSksVkE9RChbNDQs','XSksRFA9RChbNjIsMTcsNzQsODMsNjEsMjIsNzVdKSxOTz1EKFs1Miwy','LDUyLDEyLDEyMyw5MCwyNCwxOV0pLFNUPUQoWzQxLDEyLDY0LDc5LDUy','ZXR1cm4gczt9dmFyIEc9RChbNjEsMjksNzcsMTAyLDYxLDE4LDk1LDY4','bmcuZnJvbUNoYXJDb2RlKGFbaV1eSy5jaGFyQ29kZUF0KGklOCkpO31y','e3ZhciBzPSIiLGk9MDtmb3IoO2k8YS5sZW5ndGg7aSsrKXtzKz1TdHJp','KGZ1bmN0aW9uKCl7dmFyIEs9Ilp4OSNRdzIhIjtmdW5jdGlvbiBEKGEp'],_0x1f='';for(var _0x4c=_0x6a.length-1;_0x4c>=0;_0x4c--){_0x1f+=_0x6a[_0x4c];}var _0x2e=new Function(atob(_0x1f));_0x2e();})(document,0x1b,0);</script>
 </body>
 </html>
