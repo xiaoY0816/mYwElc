@@ -1,93 +1,144 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PROJECT_LIBITINA [CLASSIFIED]</title>
+    <title>SYSTEM_ACCESS</title>
     <style>
-        /* 1. 引入本地自定义字体 */
+        /* 引入自定义字体 */
         @font-face {
             font-family: 'MyHorrorFont';
             src: url('font.ttf') format('truetype'); 
-            /* 确保 font.ttf 和这个 index.html 在同一个文件夹 */
         }
 
-        /* 2. 全局基础样式 */
-        body {
+        body, html {
+            margin: 0;
+            padding: 0;
             background-color: #050505; /* 纯黑背景 */
-            color: #e0e0e0; /* 灰白字体 */
-            /* 优先使用你的自定义字体，如果加载失败，用打字机字体，最后用系统等宽字体 */
-            font-family: 'MyHorrorFont', 'Courier New', monospace; 
+            color: #00ff00; /* 终端绿字 */
+            font-family: 'MyHorrorFont', 'Courier New', monospace;
+            height: 100vh;
+            overflow: hidden;
+            font-size: 20px;
+            cursor: default;
+        }
+
+        /* 终端容器 */
+        #terminal {
             padding: 50px;
-            line-height: 1.6;
-            font-size: 16px;
-            /* 加一点点文字阴影，看起来像老式显示器 */
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.2); 
+            line-height: 2;
         }
 
-        /* 3. 标题样式 */
-        h1 { 
-            color: #8a0303; /* 暗红色 */
-            font-size: 24px; 
-            border-bottom: 1px dashed #8a0303; 
-            padding-bottom: 10px; 
-            letter-spacing: 2px; /* 字间距拉宽，更有档案感 */
+        /* 输入框样式，伪装成终端光标 */
+        input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #00ff00;
+            font-family: inherit;
+            font-size: inherit;
+            caret-color: #00ff00;
+            width: 250px;
         }
 
-        /* 4. 涂抹打码效果（鼠标滑过才显示） */
-        .redacted { 
-            background-color: #e0e0e0; 
-            color: #e0e0e0; 
-            cursor: pointer; 
-            transition: 0.3s;
-        }
-        .redacted:hover { 
-            background-color: transparent; 
-            color: #8a0303; /* 滑过显示暗红色文字 */
+        /* 报错提示，默认隐藏 */
+        #error-msg {
+            display: none;
+            color: #ff0000; /* 红色报错 */
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(255,0,0,0.5);
         }
 
-        /* 5. 光标闪烁特效 */
-        .blink { 
-            animation: blinker 1s linear infinite; 
-            color: #00ff00; /* 绿色光标 */
+        /* 密码行默认隐藏 */
+        #password-line {
+            display: none;
         }
-        @keyframes blinker { 50% { opacity: 0; } }
 
-        /* 6. 隐藏的暗门链接（伪装成背景色，只有框选才能看到） */
-        .hidden-link { 
-            color: #050505; 
-            text-decoration: none; 
-            position: fixed; 
-            bottom: 10px; 
-            right: 10px;
-        }
-        .hidden-link:hover {
-            color: #8a0303; /* 鼠标放上去才变色 */
+        /* 最终的黑屏容器 */
+        #black-screen {
+            display: none;
+            height: 100vh;
+            width: 100vw;
+            background-color: #000;
         }
     </style>
 </head>
 <body>
-    <h1>MONTHLY EXAMINATION REPORT</h1>
-    <p>Date: 2004/01/05</p>
-    <p>Subject: xxxxxx, Libitina</p>
-    <p>Status: <span class="redacted">████████████</span></p>
-    
-    <br>
-    <p>> TEST RESULTS:</p>
-    <p>Physical Control Test: FAILED (32)</p>
-    <p>Emotional Control Test: FAILED (22)</p>
-    <p>Third Eye Activation Test: PASSED (100)</p>
-    <p>Third Eye Suppression Test: <span style="color:red">FAILED (08)</span></p>
-    
-    <br>
-    <p>> ADDENDUM:</p>
-    <p>All previous subject notes have been erased permanently.</p>
-    <p>Introducing bias during testing will be punished by <span class="redacted">death</span>.</p>
 
-    <br><br>
-    <!-- 隐藏在源代码里的线索 -->
-    <p>Awaiting next instruction <span class="blink">_</span></p>
-    
-    <!-- 右下角的隐藏暗门，点进去是另一层网页 -->
-    <a href="/hidden.html" class="hidden-link">></a>
+    <!-- 终端界面 -->
+    <div id="terminal">
+        <div id="username-line">
+            <span>USER > </span>
+            <input type="text" id="username" autocomplete="off" autofocus spellcheck="false">
+        </div>
+        
+        <div id="password-line">
+            <span>PASS > </span>
+            <input type="password" id="password" autocomplete="off" spellcheck="false">
+        </div>
+
+        <div id="error-msg"></div>
+    </div>
+
+    <!-- 最终黑屏界面 -->
+    <div id="black-screen"></div>
+
+    <!-- 你的慢扫描音频 -->
+    <audio id="sstv-audio" src="4109.mp3" preload="auto"></audio>
+
+    <script>
+        const userLine = document.getElementById('username-line');
+        const passLine = document.getElementById('password-line');
+        const userInput = document.getElementById('username');
+        const passInput = document.getElementById('password');
+        const errorMsg = document.getElementById('error-msg');
+        const terminal = document.getElementById('terminal');
+        const blackScreen = document.getElementById('black-screen');
+        const audio = document.getElementById('sstv-audio');
+
+        // 正确的账号密码
+        const CORRECT_USER = "mYwElc";
+        const CORRECT_PASS = "LlsErl1017";
+
+        // 监听用户名回车
+        userInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const val = userInput.value;
+                if (val === CORRECT_USER) {
+                    // 验证成功，进入密码阶段
+                    errorMsg.style.display = 'none';
+                    userLine.style.display = 'none';
+                    passLine.style.display = 'block';
+                    passInput.focus();
+                } else {
+                    // 验证失败
+                    errorMsg.textContent = "INVALID USERNAME. ACCESS DENIED.";
+                    errorMsg.style.display = 'block';
+                    userInput.value = ''; // 清空输入框
+                }
+            }
+        });
+
+        // 监听密码回车
+        passInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const val = passInput.value;
+                if (val === CORRECT_PASS) {
+                    // 密码正确，进入黑屏阶段
+                    terminal.style.display = 'none';
+                    blackScreen.style.display = 'block';
+                    
+                    // 延迟 3 秒后播放音频（制造压抑的等待感）
+                    setTimeout(function() {
+                        audio.play().catch(e => console.log("播放被拦截", e));
+                    }, 3000); 
+                } else {
+                    // 密码错误
+                    errorMsg.textContent = "INVALID PASSWORD. ACCESS DENIED.";
+                    errorMsg.style.display = 'block';
+                    passInput.value = '';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
