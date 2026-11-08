@@ -4,20 +4,65 @@
     <meta charset="UTF-8">
     <title>PROJECT_LIBITINA [CLASSIFIED]</title>
     <style>
+        /* 1. 引入本地自定义字体 */
+        @font-face {
+            font-family: 'MyHorrorFont';
+            src: url('font.ttf') format('truetype'); 
+            /* 确保 font.ttf 和这个 index.html 在同一个文件夹 */
+        }
+
+        /* 2. 全局基础样式 */
         body {
-            background-color: #050505;
-            color: #e0e0e0;
-            font-family: "Courier New", monospace;
+            background-color: #050505; /* 纯黑背景 */
+            color: #e0e0e0; /* 灰白字体 */
+            /* 优先使用你的自定义字体，如果加载失败，用打字机字体，最后用系统等宽字体 */
+            font-family: 'MyHorrorFont', 'Courier New', monospace; 
             padding: 50px;
             line-height: 1.6;
             font-size: 16px;
+            /* 加一点点文字阴影，看起来像老式显示器 */
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.2); 
         }
-        h1 { color: #8a0303; font-size: 24px; border-bottom: 1px dashed #8a0303; padding-bottom: 10px; }
-        .redacted { background-color: #e0e0e0; color: #e0e0e0; cursor: pointer; }
-        .redacted:hover { background-color: transparent; color: #e0e0e0; } /* 鼠标滑过显示被涂抹的字 */
-        .blink { animation: blinker 1s linear infinite; }
+
+        /* 3. 标题样式 */
+        h1 { 
+            color: #8a0303; /* 暗红色 */
+            font-size: 24px; 
+            border-bottom: 1px dashed #8a0303; 
+            padding-bottom: 10px; 
+            letter-spacing: 2px; /* 字间距拉宽，更有档案感 */
+        }
+
+        /* 4. 涂抹打码效果（鼠标滑过才显示） */
+        .redacted { 
+            background-color: #e0e0e0; 
+            color: #e0e0e0; 
+            cursor: pointer; 
+            transition: 0.3s;
+        }
+        .redacted:hover { 
+            background-color: transparent; 
+            color: #8a0303; /* 滑过显示暗红色文字 */
+        }
+
+        /* 5. 光标闪烁特效 */
+        .blink { 
+            animation: blinker 1s linear infinite; 
+            color: #00ff00; /* 绿色光标 */
+        }
         @keyframes blinker { 50% { opacity: 0; } }
-        .hidden-link { color: #050505; text-decoration: none; } /* 伪装成背景色的隐藏链接 */
+
+        /* 6. 隐藏的暗门链接（伪装成背景色，只有框选才能看到） */
+        .hidden-link { 
+            color: #050505; 
+            text-decoration: none; 
+            position: fixed; 
+            bottom: 10px; 
+            right: 10px;
+        }
+        .hidden-link:hover {
+            color: #8a0303; /* 鼠标放上去才变色 */
+        }
     </style>
 </head>
 <body>
@@ -39,10 +84,10 @@
     <p>Introducing bias during testing will be punished by <span class="redacted">death</span>.</p>
 
     <br><br>
-    <!-- 只有右键查看源代码才能看到的注释：你以为这就结束了？ -->
+    <!-- 隐藏在源代码里的线索 -->
     <p>Awaiting next instruction <span class="blink">_</span></p>
     
-    <!-- 一个隐藏的入口，只有把鼠标放到屏幕右下角的黑色区域才能点进去 -->
-    <a href="/classified_hidden.html" class="hidden-link" style="position:fixed; bottom:10px; right:10px;">></a>
+    <!-- 右下角的隐藏暗门，点进去是另一层网页 -->
+    <a href="/hidden.html" class="hidden-link">></a>
 </body>
 </html>
